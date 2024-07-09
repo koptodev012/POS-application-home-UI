@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:home_design/common/colors.dart';
+import 'package:home_design/common/shimmer_effect/shimmer_effect.dart';
+import 'package:home_design/common/utils/device_dimension.dart';
 
 class OrderDetails extends StatefulWidget {
   const OrderDetails({super.key});
@@ -8,6 +11,39 @@ class OrderDetails extends StatefulWidget {
 }
 
 class _OrderDetailsState extends State<OrderDetails> {
+  //! ------------------------------------------------------------------
+
+  // For Cancel order Button
+
+  Color cancelColor = CommonColors.cancelBtnColor;
+  int _enterCounter1 = 0;
+  int _exitCounter1 = 0;
+  double x1 = 0.0;
+  double y1 = 0.0;
+
+  void _incrementEnter1(PointerEvent details) {
+    setState(() {
+      _enterCounter1++;
+    });
+  }
+
+  void _incrementExit1(PointerEvent details) {
+    setState(() {
+      cancelColor = CommonColors.cancelBtnColor;
+      _exitCounter1++;
+    });
+  }
+
+  void _updateLocation1(PointerEvent details) {
+    setState(() {
+      cancelColor = Colors.red;
+      x1 = details.position.dx;
+      y1 = details.position.dy;
+    });
+  }
+
+  //! ------------------------------------------------------------------
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +53,8 @@ class _OrderDetailsState extends State<OrderDetails> {
         Expanded(
             flex: 2,
             child: Container(
-              color: Colors.amber,
+              // color: Colors.orange,
+              child: const ShimmerEffect(),
             )),
 
         //! Sub Container 2,
@@ -25,7 +62,44 @@ class _OrderDetailsState extends State<OrderDetails> {
         Expanded(
             flex: 7,
             child: Container(
-              color: Colors.red,
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height:
+                              DeviceUtils.getDeviceDimension(context).height *
+                                  0.05,
+                          width: DeviceUtils.getDeviceDimension(context).width *
+                              0.14,
+                          child: TextFormField(
+                            style: const TextStyle(
+                                fontSize: 14, color: Colors.white),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              filled: true,
+                              fillColor: CommonColors.darkColor,
+                              hintStyle: TextStyle(
+                                  fontSize: 14,
+                                  color: CommonColors.lightTextColor),
+                              prefixIcon: Icon(
+                                Icons.search,
+                                color: CommonColors.lightTextColor,
+                              ),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12)),
+                              hintText: 'Search with ItemName',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             )),
 
         //! Sub Container 3,
@@ -44,9 +118,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                       thickness: 1.0,
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -64,9 +137,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -84,9 +156,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -104,9 +175,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -131,32 +201,45 @@ class _OrderDetailsState extends State<OrderDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                  child: Text(
-                                "Cancel order",
-                                style: TextStyle(color: Colors.white),
-                              )),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            onEnter: _incrementEnter1,
+                            onHover: _updateLocation1,
+                            onExit: _incrementExit1,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: cancelColor,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Center(
+                                    child: Text(
+                                  "Cancel order",
+                                  style: TextStyle(color: Colors.white),
+                                )),
+                              ),
                             ),
                           ),
                         ),
+                        SizedBox(
+                          width: DeviceUtils.getDeviceDimension(context).width *
+                              0.03,
+                        ),
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                  child: Text(
-                                "Place order",
-                                style: TextStyle(color: Colors.white),
-                              )),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: CommonColors.placeBtnOrder,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Center(
+                                    child: Text(
+                                  "Place order",
+                                  style: TextStyle(color: Colors.white),
+                                )),
+                              ),
                             ),
                           ),
                         )

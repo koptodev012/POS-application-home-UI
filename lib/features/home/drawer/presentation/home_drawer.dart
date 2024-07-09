@@ -1,11 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:home_design/common/variables.dart';
-import 'package:home_design/features/home/presentation/home_screen.dart';
+import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer({super.key});
@@ -15,14 +16,6 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
-  @override
-  void initState() {
-    setState(() {
-      CommonVariables.selectIndex = 0;
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     // --------------------------------------------------------------------
@@ -55,9 +48,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Image.asset(
-                  CommonImages.logo1,
-                  height: screenHeight * 0.07,
-                  width: screenWidth * 0.07,
+                  CommonImages.headerLogo,
+                  height: screenHeight * 0.06,
+                  width: screenWidth * 0.05,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -80,45 +73,51 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 child: Row(
                   children: [
                     Expanded(
-                        child: GestureDetector(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: index == CommonVariables.selectIndex
-                              ? CommonColors.buttonBgColor
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Row(
-                            children: [
-                              Icon(
-                                buttonNameList[index]["buttonIcon"],
-                                color: index == CommonVariables.selectIndex
-                                    ? CommonColors.buttontextColor
-                                    : Colors.black.withOpacity(0.5),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
-                                child: Text(
-                                  buttonNameList[index]["buttonName"],
-                                  style: TextStyle(
-                                    color: index == CommonVariables.selectIndex
-                                        ? CommonColors.buttontextColor
-                                        : Colors.black.withOpacity(0.5),
-                                  ),
+                        child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: index == CommonVariables.selectIndex
+                                ? CommonColors.buttonBgColor
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  buttonNameList[index]["buttonIcon"],
+                                  color: index == CommonVariables.selectIndex
+                                      ? CommonColors.buttontextColor
+                                      : Colors.black.withOpacity(0.5),
                                 ),
-                              )
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Text(
+                                    buttonNameList[index]["buttonName"],
+                                    style: TextStyle(
+                                      color:
+                                          index == CommonVariables.selectIndex
+                                              ? CommonColors.buttontextColor
+                                              : Colors.black.withOpacity(0.5),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                            CommonVariables.selectIndex = index;
+                          });
+
+                          BlocProvider.of<PageIndexCubit>(context)
+                              .selectPageIndexFunction();
+                        },
                       ),
-                      onTap: () {
-                        setState(() {
-                          CommonVariables.selectIndex = index;
-                          log('Drawer selectd Index: ${CommonVariables.selectIndex}');
-                        });
-                      },
                     ))
                   ],
                 ),

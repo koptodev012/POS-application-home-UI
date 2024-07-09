@@ -10,7 +10,7 @@ class StaffSection extends StatefulWidget {
 class _StaffSectionState extends State<StaffSection> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("Staff Section"),
     );
   }

@@ -10,7 +10,7 @@ class MenuSection extends StatefulWidget {
 class _MenuSectionState extends State<MenuSection> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("Menu Section"),
     );
   }

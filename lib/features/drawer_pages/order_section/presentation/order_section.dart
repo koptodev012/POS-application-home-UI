@@ -10,7 +10,7 @@ class OrderSection extends StatefulWidget {
 class _OrderSectionState extends State<OrderSection> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("Order Section"),
     );
   }

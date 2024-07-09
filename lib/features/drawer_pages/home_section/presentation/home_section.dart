@@ -10,7 +10,7 @@ class HomeSection extends StatefulWidget {
 class _HomeSectionState extends State<HomeSection> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text("Home Section"),
     );
   }

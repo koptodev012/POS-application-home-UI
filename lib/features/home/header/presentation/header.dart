@@ -25,7 +25,7 @@ class _HeaderState extends State<Header> {
                 CircleAvatar(
                     radius: 17,
                     backgroundImage: AssetImage(
-                      CommonImages.logo2,
+                      CommonImages.headerLogo,
                     )),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
