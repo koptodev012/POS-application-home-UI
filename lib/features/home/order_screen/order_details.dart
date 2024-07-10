@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_design/common/colors.dart';
-import 'package:home_design/common/shimmer_effect/shimmer_effect.dart';
+import 'package:home_design/common/shimmer_effect/presentation/shimmer_effect.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
