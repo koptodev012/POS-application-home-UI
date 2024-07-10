@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/navigation/navigation_helper.dart';
@@ -13,8 +12,17 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
-  //! ------------------------------------------------------
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 3),
+    vsync: this,
+  )..repeat();
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.fastOutSlowIn,
+  );
+
   @override
   void initState() {
     super.initState();
@@ -22,7 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
         () => NavigationHelper.navigateAndReplace(context, const HomeScreen()));
   }
 
-  //! ------------------------------------------------------
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +71,17 @@ class _SplashScreenState extends State<SplashScreen> {
                   SizedBox(
                     height: screenHeight * 0.01,
                   ),
-                  const Text(
-                    "Efficiency Elevated: Quick Dine – Where Service Meets Speed!",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        decorationColor: Colors.white),
+                  SizeTransition(
+                    sizeFactor: _animation,
+                    axis: Axis.horizontal,
+                    axisAlignment: -1,
+                    child: const Text(
+                      "Efficiency Elevated: Quick Dine – Where Service Meets Speed!",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          decorationColor: Colors.white),
+                    ),
                   )
                 ],
               ),

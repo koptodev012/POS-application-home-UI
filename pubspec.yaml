@@ -40,6 +40,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   shared_preferences: ^2.2.3
+  widget_and_text_animator: ^1.1.5
+  animated_text_kit: ^4.2.2
+  flutter_animated_icons: ^1.0.1
+
  
 
 
