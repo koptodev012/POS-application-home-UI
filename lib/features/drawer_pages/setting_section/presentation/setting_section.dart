@@ -70,7 +70,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                   context)
                                               .height *
                                           0.04,
-                                      child: const Icon(Icons.book),
+                                      child: const Icon(
+                                          CupertinoIcons.square_list_fill),
                                     )),
                                 Expanded(
                                     flex: 8,

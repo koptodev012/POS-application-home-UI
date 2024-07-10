@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
@@ -28,27 +29,27 @@ class _HomeDrawerState extends State<HomeDrawer> {
     List buttonNameListEnglish = [
       {
         "buttonName": AppLocalizations.of(context)!.home,
-        "buttonIcon": Icons.home
+        "buttonIcon": CupertinoIcons.house_fill
       },
       {
         "buttonName": AppLocalizations.of(context)!.menu,
-        "buttonIcon": Icons.menu
+        "buttonIcon": CupertinoIcons.square_list_fill
       },
       {
         "buttonName": AppLocalizations.of(context)!.orders,
-        "buttonIcon": Icons.shop
+        "buttonIcon": CupertinoIcons.bag_fill
       },
       {
         "buttonName": AppLocalizations.of(context)!.payments,
-        "buttonIcon": Icons.payment,
+        "buttonIcon": CupertinoIcons.flame_fill,
       },
       {
         "buttonName": AppLocalizations.of(context)!.staff,
-        "buttonIcon": Icons.person
+        "buttonIcon": CupertinoIcons.person_2_square_stack_fill
       },
       {
         "buttonName": AppLocalizations.of(context)!.settings,
-        "buttonIcon": Icons.settings
+        "buttonIcon": CupertinoIcons.gear_alt_fill
       },
     ];
 

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/images/images.dart';
@@ -50,10 +51,10 @@ class _HeaderState extends State<Header> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Icon(Icons.notifications),
+                const Icon(CupertinoIcons.bell_fill),
                 const Padding(
                   padding: EdgeInsets.only(left: 20.0, right: 20),
-                  child: Icon(Icons.computer),
+                  child: Icon(CupertinoIcons.device_laptop),
                 ),
                 CircleAvatar(
                     radius: 15,
@@ -82,7 +83,7 @@ class _HeaderState extends State<Header> {
                                 child: Row(
                                   children: [
                                     const Icon(
-                                      Icons.logout,
+                                      CupertinoIcons.square_arrow_right,
                                       color: Colors.black,
                                       size: 20,
                                     ),
