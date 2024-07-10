@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key});
@@ -30,7 +31,7 @@ class _HeaderState extends State<Header> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Text(
-                    "Welcome to",
+                    AppLocalizations.of(context)!.welcomeTo,
                     style: TextStyle(
                         color: CommonColors.buttontextColor,
                         fontSize: 25,
@@ -78,19 +79,19 @@ class _HeaderState extends State<Header> {
                               ),
                               child: InkWell(
                                 onTap: () {},
-                                child: const Row(
+                                child: Row(
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.logout,
                                       color: Colors.black,
                                       size: 20,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Text(
-                                      "Logout",
-                                      style: TextStyle(
+                                      AppLocalizations.of(context)!.logout,
+                                      style: const TextStyle(
                                         color: Colors.black,
                                       ),
                                     ),

@@ -1,7 +1,5 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/variables.dart';
-
 
 part 'page_index_state.dart';
 

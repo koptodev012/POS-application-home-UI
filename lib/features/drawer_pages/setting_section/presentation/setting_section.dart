@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
+import 'package:home_design/common/localization/cubit/change_language/change_language_cubit.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:home_design/common/variables.dart';
 
 class SettingSection extends StatefulWidget {
   const SettingSection({super.key});
@@ -25,9 +29,9 @@ class _SettingSectionState extends State<SettingSection> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "Settings",
+                    AppLocalizations.of(context)!.settings,
                     style:
                         TextStyle(color: CommonColors.darkColor, fontSize: 18),
                   ),
@@ -75,7 +79,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                   context)
                                               .height *
                                           0.04,
-                                      child: const Text("Menu"),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.menu),
                                     )),
                                 Expanded(
                                     flex: 4,
@@ -133,7 +138,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                   context)
                                               .height *
                                           0.04,
-                                      child: const Text("Tables"),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.tables),
                                     )),
                                 Expanded(
                                     flex: 4,
@@ -191,7 +197,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                   context)
                                               .height *
                                           0.04,
-                                      child: const Text("Language"),
+                                      child: Text(AppLocalizations.of(context)!
+                                          .language),
                                     )),
                                 Expanded(
                                     flex: 4,
@@ -208,58 +215,104 @@ class _SettingSectionState extends State<SettingSection> {
                                             padding: const EdgeInsets.only(
                                                 right: 10.0),
                                             child: Text(
-                                              "English",
+                                              CommonVariables.selectedLanguage,
                                               style: TextStyle(
                                                   color: CommonColors
                                                       .textColorBlue),
                                             ),
                                           ),
-                                          PopupMenuButton(
-                                              position: PopupMenuPosition.over,
-                                              icon: const Icon(
-                                                Icons.keyboard_arrow_down_sharp,
-                                                color: Colors.black,
-                                                size: 20,
-                                              ),
-                                              color: Colors.white,
-                                              itemBuilder: (context) => [
-                                                    PopupMenuItem(
-                                                        onTap: () {},
-                                                        textStyle:
-                                                            const TextStyle(
-                                                          color: Colors.black,
-                                                        ),
-                                                        child: const Column(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(4.0),
-                                                              child: Text(
-                                                                "English",
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
+                                          BlocBuilder<ChangeLanguageCubit,
+                                              ChangeLanguageState>(
+                                            builder: (context, state) {
+                                              return PopupMenuButton(
+                                                  position:
+                                                      PopupMenuPosition.over,
+                                                  icon: const Icon(
+                                                    Icons
+                                                        .keyboard_arrow_down_sharp,
+                                                    color: Colors.black,
+                                                    size: 20,
+                                                  ),
+                                                  color: Colors.white,
+                                                  itemBuilder: (context) => [
+                                                        PopupMenuItem(
+                                                            onTap: () {},
+                                                            textStyle:
+                                                                const TextStyle(
+                                                              color:
+                                                                  Colors.black,
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(4.0),
-                                                              child: Text(
-                                                                "Arabic",
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
+                                                            child: Column(
+                                                              children: [
+                                                                Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                          4.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    child:
+                                                                        const Text(
+                                                                      "English",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                    ),
+                                                                    onTap: () {
+                                                                      setState(
+                                                                          () {
+                                                                        CommonVariables.selectedLanguage =
+                                                                            "English";
+                                                                      });
+
+                                                                      BlocProvider.of<ChangeLanguageCubit>(
+                                                                              context)
+                                                                          .ChangelanguageFunction(
+                                                                              const Locale('en'));
+
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        )),
-                                                  ])
+                                                                Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                          4.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    child:
+                                                                        const Text(
+                                                                      "Arabic",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                    ),
+                                                                    onTap: () {
+                                                                      setState(
+                                                                          () {
+                                                                        CommonVariables.selectedLanguage =
+                                                                            "عربي";
+                                                                      });
+                                                                      BlocProvider.of<ChangeLanguageCubit>(
+                                                                              context)
+                                                                          .ChangelanguageFunction(
+                                                                              const Locale('ar'));
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            )),
+                                                      ]);
+                                            },
+                                          )
                                         ],
                                       ),
                                     )),
@@ -302,7 +355,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                   context)
                                               .height *
                                           0.04,
-                                      child: const Text("Sounds"),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.sounds),
                                     )),
                                 Expanded(
                                     flex: 4,
@@ -368,7 +422,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                   context)
                                               .height *
                                           0.04,
-                                      child: const Text("Notifications"),
+                                      child: Text(AppLocalizations.of(context)!
+                                          .notifications),
                                     )),
                                 Expanded(
                                     flex: 4,

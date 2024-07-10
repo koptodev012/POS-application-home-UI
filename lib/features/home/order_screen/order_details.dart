@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/shimmer_effect/shimmer_effect.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class OrderDetails extends StatefulWidget {
   const OrderDetails({super.key});
@@ -91,7 +92,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                               ),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12)),
-                              hintText: 'Search with ItemName',
+                              hintText: AppLocalizations.of(context)!
+                                  .searchWithItemName,
                             ),
                           ),
                         ),
@@ -118,17 +120,18 @@ class _OrderDetailsState extends State<OrderDetails> {
                       thickness: 1.0,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Sub total",
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.subtotal,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 12),
                         ),
-                        Text(
+                        const Text(
                           textAlign: TextAlign.center,
                           "0",
                           style: TextStyle(
@@ -137,17 +140,18 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Taxed",
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.taxed,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 12),
                         ),
-                        Text(
+                        const Text(
                           textAlign: TextAlign.center,
                           "0",
                           style: TextStyle(
@@ -156,17 +160,18 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Discount",
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.discount,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 12),
                         ),
-                        Text(
+                        const Text(
                           textAlign: TextAlign.center,
                           "0",
                           style: TextStyle(
@@ -175,17 +180,18 @@ class _OrderDetailsState extends State<OrderDetails> {
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15, bottom: 8),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, right: 15, bottom: 8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Total",
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.total,
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                        Text(
+                        const Text(
                           textAlign: TextAlign.center,
                           "0",
                           style: TextStyle(
@@ -210,12 +216,12 @@ class _OrderDetailsState extends State<OrderDetails> {
                               decoration: BoxDecoration(
                                   color: cancelColor,
                                   borderRadius: BorderRadius.circular(8)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Center(
                                     child: Text(
-                                  "Cancel order",
-                                  style: TextStyle(color: Colors.white),
+                                  AppLocalizations.of(context)!.cancelOrder,
+                                  style: const TextStyle(color: Colors.white),
                                 )),
                               ),
                             ),
@@ -232,12 +238,12 @@ class _OrderDetailsState extends State<OrderDetails> {
                               decoration: BoxDecoration(
                                   color: CommonColors.placeBtnOrder,
                                   borderRadius: BorderRadius.circular(8)),
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Center(
                                     child: Text(
-                                  "Place order",
-                                  style: TextStyle(color: Colors.white),
+                                  AppLocalizations.of(context)!.placedOrder,
+                                  style: const TextStyle(color: Colors.white),
                                 )),
                               ),
                             ),

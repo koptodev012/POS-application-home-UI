@@ -1,0 +1,26 @@
+{
+ "settings" : "Settings",
+ "menu" : "Menu",
+ "tables" : "Tables",
+ "language" : "Language",
+ "sounds" : "Sounds",
+ "notifications" : "Notifications",
+ "home" : "Home",
+ "orders" : "Orders",
+ "payments" : "Payments",
+ "welcomeTo" : "Welcome to",
+ "subtotal" : "Subtotal",
+ "taxed" : "Taxed",
+ "discount" : "Discount",
+ "total" : "Total",
+ "cancelOrder" : "Cancel order",
+ "placedOrder" : "Place order",
+ "searchWithItemName" : "Search with ItemName",
+ "staff" : "Staff",
+ "logout" : "Logout"
+
+
+
+
+
+}

@@ -1,0 +1,24 @@
+{
+ "settings" : "إعدادات",
+ "menu" : "قائمة طعام",
+ "tables" : "الجداول",
+ "language" : "لغة",
+ "sounds" : "اصوات",
+ "notifications" : "إشعارات",
+ "home" : "بيت",
+ "orders" : "طلبات",
+ "payments" : "المدفوعات",
+ "welcomeTo" : "مرحبا بك في",
+ "subtotal" : "المجموع الفرعي",
+ "taxed" : "خاضع للضريبة",
+ "discount" : "تخفيض",
+ "total" : "المجموع",
+ "cancelOrder" : "الغاء الطلب",
+ "placedOrder" : "مكان الامر",
+ "searchWithItemName" : "البحث باستخدام اسم العنصر",
+ "staff" : "طاقم عمل",
+ "logout" : "تسجيل خروج"
+
+
+
+}

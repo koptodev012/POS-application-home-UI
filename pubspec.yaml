@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   shimmer: ^3.0.0
   flutter_bloc: ^8.1.6
+  flutter_localizations:
+    sdk: flutter
+  shared_preferences: ^2.2.3
  
 
 
@@ -61,6 +64,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   assets:
