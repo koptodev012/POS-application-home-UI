@@ -6,6 +6,7 @@ import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:home_design/common/variables.dart';
+import 'package:home_design/features/home/drawer/cubit/isCollpasedValue/is_collpased_value_cubit.dart';
 import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
@@ -17,6 +18,13 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
+  void toggleIsCollapsed() {
+    setState(() {
+      CommonVariables.isCollapsed = !CommonVariables.isCollapsed;
+      print("isCollpased: ${CommonVariables.isCollapsed}");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // --------------------------------------------------------------------
@@ -105,6 +113,10 @@ class _HomeDrawerState extends State<HomeDrawer> {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Row(
+                              mainAxisAlignment:
+                                  CommonVariables.isCollapsed == false
+                                      ? MainAxisAlignment.start
+                                      : MainAxisAlignment.center,
                               children: [
                                 Icon(
                                   buttonNameListEnglish[index]["buttonIcon"],
@@ -113,16 +125,19 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                       : Colors.black.withOpacity(0.5),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 20.0),
-                                  child: Text(
-                                    buttonNameListEnglish[index]["buttonName"],
-                                    style: TextStyle(
-                                      color:
-                                          index == CommonVariables.selectIndex
-                                              ? CommonColors.buttontextColor
-                                              : Colors.black.withOpacity(0.5),
-                                    ),
-                                  ),
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: CommonVariables.isCollapsed == false
+                                      ? Text(
+                                          buttonNameListEnglish[index]
+                                              ["buttonName"],
+                                          style: TextStyle(
+                                            color: index ==
+                                                    CommonVariables.selectIndex
+                                                ? CommonColors.buttontextColor
+                                                : Colors.black.withOpacity(0.5),
+                                          ),
+                                        )
+                                      : SizedBox(),
                                 )
                               ],
                             ),
@@ -142,6 +157,49 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 ),
               );
             }),
+
+        //! Collapse,
+
+        SizedBox(
+          height: DeviceUtils.getDeviceDimension(context).height * 0.20,
+        ),
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Divider(
+            color: Colors.black.withOpacity(0.2),
+            thickness: 1.0,
+          ),
+        ),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8),
+              child: GestureDetector(
+                  child: Icon(CommonVariables.isCollapsed == false
+                      ? CupertinoIcons.back
+                      : CupertinoIcons.chevron_forward),
+                  onTap: () {
+                    toggleIsCollapsed();
+
+                    BlocProvider.of<IsCollpasedValueCubit>(context)
+                        .setIsCollapsed(CommonVariables.isCollapsed);
+                  }),
+            ),
+            CommonVariables.isCollapsed == false
+                ? Text(
+                    "Collpase",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        letterSpacing: 1,
+                        color: Colors.black.withOpacity(0.5)),
+                  )
+                : SizedBox(),
+          ],
+        )
       ],
     );
   }

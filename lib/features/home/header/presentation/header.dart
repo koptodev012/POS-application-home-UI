@@ -5,14 +5,14 @@ import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
-class Header extends StatefulWidget {
-  const Header({super.key});
+class HomeHeader extends StatefulWidget {
+  const HomeHeader({super.key});
 
   @override
-  State<Header> createState() => _HeaderState();
+  State<HomeHeader> createState() => _HomeHeaderState();
 }
 
-class _HeaderState extends State<Header> {
+class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
     return Row(

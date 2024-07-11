@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -270,14 +272,16 @@ class _SettingSectionState extends State<SettingSection> {
                                                                       ),
                                                                       onTap:
                                                                           () {
+                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
+                                                                            .ChangelanguageFunction(const Locale('en'));
+
                                                                         setState(
                                                                             () {
                                                                           CommonVariables.selectedLanguage =
                                                                               "English";
                                                                         });
 
-                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
-                                                                            .ChangelanguageFunction(const Locale('en'));
+                                                                        log("Selected language: ${CommonVariables.selectedLanguage}");
 
                                                                         Navigator.pop(
                                                                             context);
@@ -302,13 +306,16 @@ class _SettingSectionState extends State<SettingSection> {
                                                                       ),
                                                                       onTap:
                                                                           () {
+                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
+                                                                            .ChangelanguageFunction(const Locale('ar'));
+
                                                                         setState(
                                                                             () {
                                                                           CommonVariables.selectedLanguage =
                                                                               "عربي";
                                                                         });
-                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
-                                                                            .ChangelanguageFunction(const Locale('ar'));
+
+                                                                        log("Selected language: ${CommonVariables.selectedLanguage}");
                                                                         Navigator.pop(
                                                                             context);
                                                                       },

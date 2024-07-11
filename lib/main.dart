@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/localization/cubit/change_language/change_language_cubit.dart';
+import 'package:home_design/features/home/drawer/cubit/isCollpasedValue/is_collpased_value_cubit.dart';
 import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => PageIndexCubit()),
         BlocProvider(create: (context) => ChangeLanguageCubit()),
+        BlocProvider(create: (context) => IsCollpasedValueCubit()),
       ],
       child: BlocBuilder<ChangeLanguageCubit, ChangeLanguageState>(
         builder: (context, state) {
