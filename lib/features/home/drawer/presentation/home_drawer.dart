@@ -9,6 +9,7 @@ import 'package:home_design/common/variables.dart';
 import 'package:home_design/features/home/drawer/cubit/isCollpasedValue/is_collpased_value_cubit.dart';
 import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:rotation/rotation.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer({super.key});
@@ -18,10 +19,12 @@ class HomeDrawer extends StatefulWidget {
 }
 
 class _HomeDrawerState extends State<HomeDrawer> {
+  RotatorFlipState _flipState = RotatorFlipState.showFirst;
+
   void toggleIsCollapsed() {
     setState(() {
       CommonVariables.isCollapsed = !CommonVariables.isCollapsed;
-      print("isCollpased: ${CommonVariables.isCollapsed}");
+      log("isCollpased: ${CommonVariables.isCollapsed}");
     });
   }
 
@@ -137,7 +140,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                                 : Colors.black.withOpacity(0.5),
                                           ),
                                         )
-                                      : SizedBox(),
+                                      : const SizedBox(),
                                 )
                               ],
                             ),
@@ -178,11 +181,20 @@ class _HomeDrawerState extends State<HomeDrawer> {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8),
               child: GestureDetector(
-                  child: Icon(CommonVariables.isCollapsed == false
-                      ? CupertinoIcons.back
-                      : CupertinoIcons.chevron_forward),
+                  child: RotatorFlip(
+                    duration: const Duration(milliseconds: 400),
+                    flipState: _flipState,
+                    firstChild: Icon(CupertinoIcons.back),
+                    secondChild: Icon(CupertinoIcons.chevron_forward),
+                  ),
                   onTap: () {
                     toggleIsCollapsed();
+
+                    setState(() {
+                      _flipState == RotatorFlipState.showFirst
+                          ? _flipState = RotatorFlipState.showSecond
+                          : _flipState = RotatorFlipState.showFirst;
+                    });
 
                     BlocProvider.of<IsCollpasedValueCubit>(context)
                         .setIsCollapsed(CommonVariables.isCollapsed);
@@ -197,7 +209,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         letterSpacing: 1,
                         color: Colors.black.withOpacity(0.5)),
                   )
-                : SizedBox(),
+                : const SizedBox(),
           ],
         )
       ],
