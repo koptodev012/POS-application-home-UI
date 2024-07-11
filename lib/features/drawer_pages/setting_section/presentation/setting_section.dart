@@ -35,8 +35,10 @@ class _SettingSectionState extends State<SettingSection> {
                   padding: EdgeInsets.all(8.0),
                   child: Text(
                     AppLocalizations.of(context)!.settings,
-                    style:
-                        TextStyle(color: CommonColors.darkColor, fontSize: 18),
+                    style: TextStyle(
+                        color: CommonColors.darkColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 Divider(
@@ -77,7 +79,7 @@ class _SettingSectionState extends State<SettingSection> {
                                                 .height *
                                             0.04,
                                         child: const Icon(
-                                            CupertinoIcons.square_list_fill),
+                                            CupertinoIcons.square_list),
                                       )),
                                   Expanded(
                                       flex: 8,
@@ -137,6 +139,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                     context)
                                                 .height *
                                             0.04,
+                                        child: const Icon(
+                                            Icons.table_bar_outlined),
                                       )),
                                   Expanded(
                                       flex: 8,
@@ -197,6 +201,7 @@ class _SettingSectionState extends State<SettingSection> {
                                                     context)
                                                 .height *
                                             0.04,
+                                        child: const Icon(Icons.translate),
                                       )),
                                   Expanded(
                                       flex: 8,
@@ -272,14 +277,13 @@ class _SettingSectionState extends State<SettingSection> {
                                                                       ),
                                                                       onTap:
                                                                           () {
-                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
-                                                                            .ChangelanguageFunction(const Locale('en'));
-
                                                                         setState(
                                                                             () {
                                                                           CommonVariables.selectedLanguage =
                                                                               "English";
                                                                         });
+                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
+                                                                            .ChangelanguageFunction(const Locale('en'));
 
                                                                         log("Selected language: ${CommonVariables.selectedLanguage}");
 
@@ -306,14 +310,14 @@ class _SettingSectionState extends State<SettingSection> {
                                                                       ),
                                                                       onTap:
                                                                           () {
-                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
-                                                                            .ChangelanguageFunction(const Locale('ar'));
-
                                                                         setState(
                                                                             () {
                                                                           CommonVariables.selectedLanguage =
                                                                               "عربي";
                                                                         });
+
+                                                                        BlocProvider.of<ChangeLanguageCubit>(context)
+                                                                            .ChangelanguageFunction(const Locale('ar'));
 
                                                                         log("Selected language: ${CommonVariables.selectedLanguage}");
                                                                         Navigator.pop(
@@ -360,6 +364,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                     context)
                                                 .height *
                                             0.04,
+                                        child: const Icon(
+                                            CupertinoIcons.speaker_2),
                                       )),
                                   Expanded(
                                       flex: 8,
@@ -429,6 +435,8 @@ class _SettingSectionState extends State<SettingSection> {
                                                     context)
                                                 .height *
                                             0.04,
+                                        child: const Icon(
+                                            Icons.mark_chat_unread_outlined),
                                       )),
                                   Expanded(
                                       flex: 8,

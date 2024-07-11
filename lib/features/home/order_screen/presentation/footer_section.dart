@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:home_design/features/home/order_screen/cubit/successful_placeOrder_icon/successul_place_order_icon_cubit.dart';
 
 class OrderDetailsFooterSection extends StatefulWidget {
   const OrderDetailsFooterSection({super.key});
@@ -162,18 +164,24 @@ class _OrderDetailsFooterSectionState extends State<OrderDetailsFooterSection> {
                 Expanded(
                   child: MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: CommonColors.placeBtnOrder,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                            child: Text(
-                          AppLocalizations.of(context)!.placedOrder,
-                          style: const TextStyle(color: Colors.white),
-                        )),
+                    child: GestureDetector(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: CommonColors.placeBtnOrder,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                              child: Text(
+                            AppLocalizations.of(context)!.placedOrder,
+                            style: const TextStyle(color: Colors.white),
+                          )),
+                        ),
                       ),
+                      onTap: () {
+                        BlocProvider.of<SuccessulPlaceOrderIconCubit>(context)
+                            .placeOrderSuccessFunction();
+                      },
                     ),
                   ),
                 )
