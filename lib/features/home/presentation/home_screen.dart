@@ -1,7 +1,7 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
+
 import 'package:home_design/common/variables.dart';
 import 'package:home_design/features/drawer_pages/home_section/presentation/home_section.dart';
 import 'package:home_design/features/drawer_pages/menu_section/presentation/menu_section.dart';
@@ -15,6 +15,7 @@ import 'package:home_design/features/home/drawer/presentation/home_drawer.dart';
 import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
 import 'package:home_design/features/home/header/presentation/header.dart';
 import 'package:home_design/features/home/order_screen/presentation/order_details.dart';
+import 'package:home_design/features/home/presentation/particles_animation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //! -------------------------------------------------------
   List screens = [
     const HomeSection(),
     const MenuSection(),
@@ -32,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const StaffSection(),
     const SettingSection()
   ];
+  //! -------------------------------------------------------
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   BlocBuilder<PageIndexCubit, PageIndexState>(
                                 builder: (context, state) {
                                   if (state is PageIndexSuccessState) {
-                                    log("Cubit Page index selected: ${state.pageIndex}");
+                                    print(
+                                        "Cubit Page index selected: ${state.pageIndex}");
                                     return Container(
                                       decoration: BoxDecoration(
                                           color: CommonVariables.selectIndex !=
@@ -124,10 +128,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           Expanded(
                             flex: 1,
                             child: Container(
-                              color: CommonVariables.isDarkMode == false
-                                  ? Colors.white
-                                  : CommonColors.darkModeColorPrimary,
-                            ),
+                                color: CommonVariables.isDarkMode == false
+                                    ? Colors.white
+                                    : CommonColors.darkModeColorPrimary,
+                                child: const ParticleAnimation()),
                           ),
                         ],
                       ),
