@@ -10,6 +10,10 @@ class CommonColors {
   static var placeBtnOrder = const Color(0xff0CB3E0);
   static var dividerColor = const Color(0xffAAB3C3);
   static var textColorBlue = const Color(0xff4DB3E0);
-  static var darkModeColorPrimary = const Color(0xff2E3D4B);
-  static var darkModeColorSecondary = const Color(0xff1C2732);
+
+  // static var darkModeColorPrimary = const Color(0xff2E3D4B);
+  // static var darkModeColorSecondary = const Color(0xff1C2732);
+
+  static var darkModeColorPrimary = const Color(0xff22325B);
+  static var darkModeColorSecondary = const Color(0xff374A7A);
 }

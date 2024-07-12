@@ -62,22 +62,26 @@ class _HomeHeaderState extends State<HomeHeader> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  //* Theme Mode,
+                  //! Theme Mode,
 
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0),
                     child: FlutterSwitch(
-                      width: 60.0,
-                      height: 35.0,
+                      activeColor: CommonColors.darkModeColorPrimary,
+                      inactiveColor: Colors.white,
+                      activeToggleColor: CommonColors.darkModeColorSecondary,
+                      inactiveToggleColor: CommonColors.homeContainerBg,
+                      width:
+                          DeviceUtils.getDeviceDimension(context).width * 0.04,
+                      height:
+                          DeviceUtils.getDeviceDimension(context).height * 0.06,
                       value: CommonVariables.isDarkMode,
                       borderRadius: 30.0,
                       padding: 8.0,
-                      activeToggleColor: Colors.black,
-                      inactiveToggleColor: Colors.white,
                       activeIcon: const Icon(Icons.nightlight_round,
                           color: Colors.white),
                       inactiveIcon:
-                          const Icon(Icons.wb_sunny, color: Colors.yellow),
+                          const Icon(Icons.wb_sunny, color: Colors.black),
                       onToggle: (value) {
                         setState(() {
                           CommonVariables.isDarkMode = value;
@@ -90,7 +94,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                     ),
                   ),
 
-                  //* .....................
+                  //! .....................
 
                   const Icon(CupertinoIcons.bell_fill),
                   const Padding(
