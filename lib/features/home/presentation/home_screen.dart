@@ -12,6 +12,7 @@ import 'package:home_design/features/drawer_pages/staff_section/presentation/sta
 import 'package:home_design/features/home/drawer/cubit/isCollpasedValue/is_collpased_value_cubit.dart';
 import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:home_design/features/home/drawer/presentation/home_drawer.dart';
+import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
 import 'package:home_design/features/home/header/presentation/header.dart';
 import 'package:home_design/features/home/order_screen/presentation/order_details.dart';
 
@@ -34,109 +35,129 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: BlocBuilder<IsCollpasedValueCubit, IsCollpasedValueState>(
-        builder: (context, state) {
-          if (state is IsCollpasedValueSuccessState) {
-            return Row(
-              children: [
-                //! Main Container 1
-                Expanded(
-                  flex: state.boolValue == false ? 2 : 1,
-                  child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border(
-                          right: BorderSide(
-                            color: CommonColors.buttontextColor,
-                            width: 1.0,
+    return BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: CommonVariables.isDarkMode == false
+              ? Colors.white
+              : CommonColors.darkModeColorPrimary,
+          body: BlocBuilder<IsCollpasedValueCubit, IsCollpasedValueState>(
+            builder: (context, state) {
+              if (state is IsCollpasedValueSuccessState) {
+                return Row(
+                  children: [
+                    //! Main Container 1
+                    Expanded(
+                      flex: state.boolValue == false ? 2 : 1,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border(
+                              right: BorderSide(
+                                color: CommonColors.buttontextColor,
+                                width: 1.0,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      child: const Column(
+                          child: const Column(
+                            children: [
+                              HomeDrawer(),
+                            ],
+                          )),
+                    ),
+
+                    //! Main Container 2,
+
+                    Expanded(
+                      flex: state.boolValue == false ? 7 : 8,
+                      child: Column(
                         children: [
-                          HomeDrawer(),
-                        ],
-                      )),
-                ),
+                          //? Sub Container 1
 
-                //! Main Container 2,
-
-                Expanded(
-                  flex: state.boolValue == false ? 7 : 8,
-                  child: Column(
-                    children: [
-                      //? Sub Container 1
-
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.white,
-                          child: const HomeHeader(),
-                        ),
-                      ),
-
-                      //? Sub Container 2
-
-                      Expanded(
-                        flex: 10,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8),
-                          child: BlocBuilder<PageIndexCubit, PageIndexState>(
-                            builder: (context, state) {
-                              if (state is PageIndexSuccessState) {
-                                log("Cubit Page index selected: ${state.pageIndex}");
-                                return Container(
-                                  decoration: BoxDecoration(
-                                      color: CommonVariables.selectIndex != 5
-                                          ? CommonColors.homeContainerBg
-                                          : Colors.white,
-                                      borderRadius: BorderRadius.circular(12)),
-                                  child: screens[state.pageIndex],
-                                );
-                              }
-                              return Container();
-                            },
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              color: Colors.white,
+                              child: const HomeHeader(),
+                            ),
                           ),
-                        ),
-                      ),
 
-                      //? Sub Container 3
+                          //? Sub Container 2
 
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                          Expanded(
+                            flex: 10,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 8.0, right: 8),
+                              child:
+                                  BlocBuilder<PageIndexCubit, PageIndexState>(
+                                builder: (context, state) {
+                                  if (state is PageIndexSuccessState) {
+                                    log("Cubit Page index selected: ${state.pageIndex}");
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                          color: CommonVariables.selectIndex !=
+                                                  5
+                                              ? CommonVariables.isDarkMode ==
+                                                      false
+                                                  ? CommonColors.homeContainerBg
+                                                  : CommonColors
+                                                      .darkModeColorSecondary
+                                              : CommonVariables.isDarkMode ==
+                                                      false
+                                                  ? Colors.white
+                                                  : CommonColors
+                                                      .darkModeColorPrimary,
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: screens[state.pageIndex],
+                                    );
+                                  }
+                                  return Container();
+                                },
+                              ),
+                            ),
+                          ),
 
-                //! Main Container 3
+                          //? Sub Container 3
 
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        left: BorderSide(
-                          color: CommonColors.buttontextColor,
-                          width: 1.0,
-                        ),
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              color: CommonVariables.isDarkMode == false
+                                  ? Colors.white
+                                  : CommonColors.darkModeColorPrimary,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    child: const HomeOrderDetails(),
-                  ),
-                ),
-              ],
-            );
-          }
-          return const SizedBox();
-        },
-      ),
+
+                    //! Main Container 3
+
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border(
+                            left: BorderSide(
+                              color: CommonColors.buttontextColor,
+                              width: 1.0,
+                            ),
+                          ),
+                        ),
+                        child: const HomeOrderDetails(),
+                      ),
+                    ),
+                  ],
+                );
+              }
+              return const SizedBox();
+            },
+          ),
+        );
+      },
     );
   }
 }

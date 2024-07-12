@@ -9,6 +9,7 @@ import 'package:home_design/common/variables.dart';
 import 'package:home_design/features/home/drawer/cubit/isCollpasedValue/is_collpased_value_cubit.dart';
 import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
 import 'package:rotation/rotation.dart';
 
 class HomeDrawer extends StatefulWidget {
@@ -67,153 +68,188 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
     // ---------------------------------------------------------------------
 
-    return Column(
-      children: [
-        //! Logo
-
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+    return BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
+      builder: (context, state) {
+        return Container(
+          height: DeviceUtils.getDeviceDimension(context).height,
+          color: CommonVariables.isDarkMode == false
+              ? Colors.white
+              : CommonColors.darkModeColorPrimary,
+          child: Column(
             children: [
+              //! Logo
+
               Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Image.asset(
-                  CommonImages.headerLogo,
-                  height: screenHeight * 0.06,
-                  width: screenWidth * 0.05,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        SizedBox(
-          height: screenHeight * 0.02,
-        ),
-
-        //! Buttons
-
-        ListView.builder(
-            shrinkWrap: true,
-            itemCount: buttonNameListEnglish.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(
-                        child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: index == CommonVariables.selectIndex
-                                ? CommonColors.buttonBgColor
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Row(
-                              mainAxisAlignment:
-                                  CommonVariables.isCollapsed == false
-                                      ? MainAxisAlignment.start
-                                      : MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  buttonNameListEnglish[index]["buttonIcon"],
-                                  color: index == CommonVariables.selectIndex
-                                      ? CommonColors.buttontextColor
-                                      : Colors.black.withOpacity(0.5),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: CommonVariables.isCollapsed == false
-                                      ? Text(
-                                          buttonNameListEnglish[index]
-                                              ["buttonName"],
-                                          style: TextStyle(
-                                            color: index ==
-                                                    CommonVariables.selectIndex
-                                                ? CommonColors.buttontextColor
-                                                : Colors.black.withOpacity(0.5),
-                                          ),
-                                        )
-                                      : const SizedBox(),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        onTap: () {
-                          setState(() {
-                            CommonVariables.selectIndex = index;
-                          });
-
-                          BlocProvider.of<PageIndexCubit>(context)
-                              .selectPageIndexFunction();
-                        },
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Image.asset(
+                        CommonImages.headerLogo,
+                        height: screenHeight * 0.06,
+                        width: screenWidth * 0.05,
+                        fit: BoxFit.fill,
                       ),
-                    ))
+                    ),
                   ],
                 ),
-              );
-            }),
+              ),
 
-        //! Collapse,
+              SizedBox(
+                height: screenHeight * 0.02,
+              ),
 
-        SizedBox(
-          height: DeviceUtils.getDeviceDimension(context).height * 0.20,
-        ),
+              //! Buttons
 
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Divider(
-            color: Colors.black.withOpacity(0.2),
-            thickness: 1.0,
-          ),
-        ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: buttonNameListEnglish.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: index == CommonVariables.selectIndex
+                                      ? CommonVariables.isDarkMode == false
+                                          ? CommonColors.buttonBgColor
+                                          : CommonColors.darkModeColorSecondary
+                                      : CommonVariables.isDarkMode == false
+                                          ? Colors.white
+                                          : CommonColors.darkModeColorPrimary,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        CommonVariables.isCollapsed == false
+                                            ? MainAxisAlignment.start
+                                            : MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                          buttonNameListEnglish[index]
+                                              ["buttonIcon"],
+                                          color: index ==
+                                                  CommonVariables.selectIndex
+                                              ? CommonColors.buttontextColor
+                                              : CommonVariables.isDarkMode ==
+                                                      false
+                                                  ? Colors.black
+                                                      .withOpacity(0.5)
+                                                  : Colors.white),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 20.0),
+                                        child:
+                                            CommonVariables.isCollapsed == false
+                                                ? Text(
+                                                    buttonNameListEnglish[index]
+                                                        ["buttonName"],
+                                                    style: TextStyle(
+                                                        color: index ==
+                                                                CommonVariables
+                                                                    .selectIndex
+                                                            ? CommonColors
+                                                                .buttontextColor
+                                                            : CommonVariables
+                                                                        .isDarkMode ==
+                                                                    false
+                                                                ? Colors.black
+                                                                    .withOpacity(
+                                                                        0.5)
+                                                                : Colors.white),
+                                                  )
+                                                : const SizedBox(),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                setState(() {
+                                  CommonVariables.selectIndex = index;
+                                });
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8),
-              child: GestureDetector(
-                  child: RotatorFlip(
-                    duration: const Duration(milliseconds: 400),
-                    flipState: _flipState,
-                    firstChild: const Icon(CupertinoIcons.back),
-                    secondChild: const Icon(CupertinoIcons.chevron_forward),
-                  ),
-                  onTap: () {
-                    toggleIsCollapsed();
-
-                    setState(() {
-                      _flipState == RotatorFlipState.showFirst
-                          ? _flipState = RotatorFlipState.showSecond
-                          : _flipState = RotatorFlipState.showFirst;
-                    });
-
-                    BlocProvider.of<IsCollpasedValueCubit>(context)
-                        .setIsCollapsed(CommonVariables.isCollapsed);
+                                BlocProvider.of<PageIndexCubit>(context)
+                                    .selectPageIndexFunction();
+                              },
+                            ),
+                          ))
+                        ],
+                      ),
+                    );
                   }),
-            ),
-            CommonVariables.isCollapsed == false
-                ? Text(
-                    "Collpase",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        letterSpacing: 1,
-                        color: Colors.black.withOpacity(0.5)),
-                  )
-                : const SizedBox(),
-          ],
-        )
-      ],
+
+              //! Collapse,
+
+              SizedBox(
+                height: CommonVariables.selectedLanguage == "English"
+                    ? DeviceUtils.getDeviceDimension(context).height * 0.20
+                    : DeviceUtils.getDeviceDimension(context).height * 0.15,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Divider(
+                  color: CommonVariables.isDarkMode == false
+                      ? Colors.black.withOpacity(0.3)
+                      : Colors.white,
+                  thickness: 1.0,
+                ),
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    child: GestureDetector(
+                        child: RotatorFlip(
+                          duration: const Duration(milliseconds: 400),
+                          flipState: _flipState,
+                          firstChild: Icon(CupertinoIcons.back),
+                          secondChild:
+                              const Icon(CupertinoIcons.chevron_forward),
+                        ),
+                        onTap: () {
+                          toggleIsCollapsed();
+
+                          setState(() {
+                            _flipState == RotatorFlipState.showFirst
+                                ? _flipState = RotatorFlipState.showSecond
+                                : _flipState = RotatorFlipState.showFirst;
+                          });
+
+                          BlocProvider.of<IsCollpasedValueCubit>(context)
+                              .setIsCollapsed(CommonVariables.isCollapsed);
+                        }),
+                  ),
+                  CommonVariables.isCollapsed == false
+                      ? Text(
+                          "Collpase",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              letterSpacing: 1,
+                              color: CommonVariables.isDarkMode == false
+                                  ? Colors.black.withOpacity(0.5)
+                                  : Colors.white),
+                        )
+                      : const SizedBox(),
+                ],
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }

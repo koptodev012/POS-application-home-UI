@@ -7,4 +7,5 @@ class CommonVariables {
   static String selectedLanguage = "English";
   static bool isCollapsed = false;
   static Locale languageCode = Locale("en");
+  static bool isDarkMode = false;
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home_design/common/localization/cubit/change_language/change_language_cubit.dart';
+import 'package:home_design/common/variables.dart';
 import 'package:home_design/features/home/order_screen/presentation/footer_section.dart';
 import 'package:home_design/features/home/order_screen/presentation/header_section.dart';
 import 'package:home_design/features/home/order_screen/presentation/middle_section.dart';
@@ -13,20 +16,28 @@ class HomeOrderDetails extends StatefulWidget {
 class _HomeOrderDetailsState extends State<HomeOrderDetails> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        //! Sub Container 1,
+    return BlocBuilder<ChangeLanguageCubit, ChangeLanguageState>(
+      builder: (context, state) {
+        return Column(
+          children: [
+            //! Sub Container 1,
 
-        Expanded(flex: 2, child: OrderDetailsHeaderSection()),
+            const Expanded(flex: 2, child: OrderDetailsHeaderSection()),
 
-        //! Sub Container 2,
+            //! Sub Container 2,
 
-        Expanded(flex: 7, child: OrderDetailsMiddleSection()),
+            Expanded(
+                flex: CommonVariables.selectedLanguage == "English" ? 7 : 6,
+                child: const OrderDetailsMiddleSection()),
 
-        //! Sub Container 3,
+            //! Sub Container 3,
 
-        Expanded(flex: 3, child: OrderDetailsFooterSection()),
-      ],
+            Expanded(
+                flex: CommonVariables.selectedLanguage == "English" ? 3 : 4,
+                child: const OrderDetailsFooterSection()),
+          ],
+        );
+      },
     );
   }
 }
