@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
@@ -103,90 +104,116 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
               //! Buttons
 
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: buttonNameListEnglish.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: index == CommonVariables.selectIndex
-                                      ? CommonVariables.isDarkMode == false
-                                          ? CommonColors.buttonBgColor
-                                          : CommonColors.darkModeColorSecondary
-                                      : CommonVariables.isDarkMode == false
-                                          ? Colors.white
-                                          : CommonColors.darkModeColorPrimary,
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        CommonVariables.isCollapsed == false
-                                            ? MainAxisAlignment.start
-                                            : MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                          buttonNameListEnglish[index]
-                                              ["buttonIcon"],
+              AnimationLimiter(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: buttonNameListEnglish.length,
+                    itemBuilder: (context, index) {
+                      return AnimationConfiguration.staggeredGrid(
+                        position: index,
+                        duration: const Duration(milliseconds: 500),
+                        columnCount: buttonNameListEnglish.length,
+                        child: SlideAnimation(
+                          verticalOffset: 50.0,
+                          child: FadeInAnimation(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      child: Container(
+                                        decoration: BoxDecoration(
                                           color: index ==
                                                   CommonVariables.selectIndex
-                                              ? CommonColors.buttontextColor
+                                              ? CommonVariables.isDarkMode ==
+                                                      false
+                                                  ? CommonColors.buttonBgColor
+                                                  : CommonColors
+                                                      .darkModeColorSecondary
                                               : CommonVariables.isDarkMode ==
                                                       false
-                                                  ? Colors.black
-                                                      .withOpacity(0.5)
-                                                  : Colors.white),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20.0),
-                                        child:
-                                            CommonVariables.isCollapsed == false
-                                                ? Text(
-                                                    buttonNameListEnglish[index]
-                                                        ["buttonName"],
-                                                    style: TextStyle(
-                                                        color: index ==
-                                                                CommonVariables
-                                                                    .selectIndex
-                                                            ? CommonColors
-                                                                .buttontextColor
-                                                            : CommonVariables
-                                                                        .isDarkMode ==
-                                                                    false
-                                                                ? Colors.black
-                                                                    .withOpacity(
-                                                                        0.5)
-                                                                : Colors.white),
-                                                  )
-                                                : const SizedBox(),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                setState(() {
-                                  CommonVariables.selectIndex = index;
-                                });
+                                                  ? Colors.white
+                                                  : CommonColors
+                                                      .darkModeColorPrimary,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(15.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                CommonVariables.isCollapsed ==
+                                                        false
+                                                    ? MainAxisAlignment.start
+                                                    : MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                  buttonNameListEnglish[index]
+                                                      ["buttonIcon"],
+                                                  color: index ==
+                                                          CommonVariables
+                                                              .selectIndex
+                                                      ? CommonColors
+                                                          .buttontextColor
+                                                      : CommonVariables
+                                                                  .isDarkMode ==
+                                                              false
+                                                          ? Colors.black
+                                                              .withOpacity(0.5)
+                                                          : Colors.white),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 20.0),
+                                                child:
+                                                    CommonVariables
+                                                                .isCollapsed ==
+                                                            false
+                                                        ? Text(
+                                                            buttonNameListEnglish[
+                                                                    index]
+                                                                ["buttonName"],
+                                                            style: TextStyle(
+                                                                color: index ==
+                                                                        CommonVariables
+                                                                            .selectIndex
+                                                                    ? CommonColors
+                                                                        .buttontextColor
+                                                                    : CommonVariables.isDarkMode ==
+                                                                            false
+                                                                        ? Colors
+                                                                            .black
+                                                                            .withOpacity(
+                                                                                0.5)
+                                                                        : Colors
+                                                                            .white),
+                                                          )
+                                                        : const SizedBox(),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        setState(() {
+                                          CommonVariables.selectIndex = index;
+                                        });
 
-                                BlocProvider.of<PageIndexCubit>(context)
-                                    .selectPageIndexFunction();
-                              },
+                                        BlocProvider.of<PageIndexCubit>(context)
+                                            .selectPageIndexFunction();
+                                      },
+                                    ),
+                                  ))
+                                ],
+                              ),
                             ),
-                          ))
-                        ],
-                      ),
-                    );
-                  }),
+                          ),
+                        ),
+                      );
+                    }),
+              ),
 
               //! Collapse,
 
