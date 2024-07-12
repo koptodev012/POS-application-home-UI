@@ -215,7 +215,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         child: RotatorFlip(
                           duration: const Duration(milliseconds: 400),
                           flipState: _flipState,
-                          firstChild: Icon(CupertinoIcons.back),
+                          firstChild: const Icon(CupertinoIcons.back),
                           secondChild:
                               const Icon(CupertinoIcons.chevron_forward),
                         ),

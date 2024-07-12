@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                 );
               }
 
-              return SizedBox();
+              return const SizedBox();
             },
           );
         },

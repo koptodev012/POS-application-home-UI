@@ -39,7 +39,7 @@ class _SettingSectionState extends State<SettingSection> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Text(
                             AppLocalizations.of(context)!.settings,
                             style: TextStyle(
@@ -154,7 +154,7 @@ class _SettingSectionState extends State<SettingSection> {
                                         children: [
                                           Expanded(
                                               flex: 1,
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: DeviceUtils
                                                             .getDeviceDimension(
                                                                 context)
@@ -221,7 +221,7 @@ class _SettingSectionState extends State<SettingSection> {
                                         children: [
                                           Expanded(
                                               flex: 1,
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: DeviceUtils
                                                             .getDeviceDimension(
                                                                 context)
@@ -405,7 +405,7 @@ class _SettingSectionState extends State<SettingSection> {
                                         children: [
                                           Expanded(
                                               flex: 1,
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: DeviceUtils
                                                             .getDeviceDimension(
                                                                 context)
@@ -480,7 +480,7 @@ class _SettingSectionState extends State<SettingSection> {
                                         children: [
                                           Expanded(
                                               flex: 1,
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: DeviceUtils
                                                             .getDeviceDimension(
                                                                 context)

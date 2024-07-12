@@ -50,7 +50,7 @@ class _OrderDetailsHeaderSectionState extends State<OrderDetailsHeaderSection> {
                               width: 50,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Color(0xffCEF0F9),
+                                color: const Color(0xffCEF0F9),
                               ),
                               child: const Padding(
                                 padding: EdgeInsets.all(5.0),

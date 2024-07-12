@@ -1,10 +1,9 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'successul_place_order_icon_state.dart';
 
 class SuccessulPlaceOrderIconCubit extends Cubit<SuccessulPlaceOrderIconState> {
-  SuccessulPlaceOrderIconCubit() : super(SuccessulPlaceOrderIconInitial()) {}
+  SuccessulPlaceOrderIconCubit() : super(SuccessulPlaceOrderIconInitial());
 
   void placeOrderSuccessFunction() async {
     emit(placeOrderSuccessState());

@@ -1,6 +1,5 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/variables.dart';
-import 'package:meta/meta.dart';
 
 part 'change_theme_state.dart';
 

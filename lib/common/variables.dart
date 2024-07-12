@@ -6,6 +6,6 @@ class CommonVariables {
   static int? selectIndex;
   static String selectedLanguage = "English";
   static bool isCollapsed = false;
-  static Locale languageCode = Locale("en");
+  static Locale languageCode = const Locale("en");
   static bool isDarkMode = false;
 }

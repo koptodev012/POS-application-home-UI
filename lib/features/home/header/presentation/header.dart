@@ -10,7 +10,6 @@ import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:home_design/common/variables.dart';
 import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
