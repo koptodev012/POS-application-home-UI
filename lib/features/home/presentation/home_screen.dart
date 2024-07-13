@@ -15,7 +15,6 @@ import 'package:home_design/features/home/drawer/presentation/home_drawer.dart';
 import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
 import 'package:home_design/features/home/header/presentation/header.dart';
 import 'package:home_design/features/home/order_screen/presentation/order_details.dart';
-import 'package:home_design/common/widgets/particles_animation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -128,10 +127,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           Expanded(
                             flex: 1,
                             child: Container(
-                                color: CommonVariables.isDarkMode == false
-                                    ? Colors.white
-                                    : CommonColors.darkModeColorPrimary,
-                                child: const ParticleAnimation()),
+                              color: CommonVariables.isDarkMode == false
+                                  ? Colors.white
+                                  : CommonColors.darkModeColorPrimary,
+                              // child: const ParticleAnimation(),
+                            ),
                           ),
                         ],
                       ),

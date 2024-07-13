@@ -1,8 +1,6 @@
-import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
@@ -65,8 +63,8 @@ class _HomeHeaderState extends State<HomeHeader> {
                     children: [
                       //! Theme Mode,
 
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
+                      const Padding(
+                        padding: EdgeInsets.only(right: 10.0),
                         child: ThemeChangedButton(),
                       ),
 
