@@ -88,14 +88,14 @@ flutter:
   fonts:
     - family: Urbanist
       fonts:
-        - asset: assets/fonts/primary_urbanist/Urbanist-Bold.ttf
-        - asset: assets/fonts/primary_urbanist/Urbanist-ExtraBold.ttf
-        - asset: assets/fonts/primary_urbanist/Urbanist-Light.ttf
-        - asset: assets/fonts/primary_urbanist/Urbanist-ExtraLight.ttf
-        - asset: assets/fonts/primary_urbanist/Urbanist-Medium.ttf
-        - asset: assets/fonts/primary_urbanist/Urbanist-Regular.ttf
-        - asset: assets/fonts/primary_urbanist/Urbanist-SemiBold.ttf
-        - asset: assets/fonts/primary_urbanist/Urbanist-Thin.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-Bold.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-ExtraBold.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-Light.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-ExtraLight.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-Medium.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-Regular.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-SemiBold.ttf
+        - asset: asset/fonts/primary_urbanist/Urbanist-Thin.ttf
 
 
   #         style: italic

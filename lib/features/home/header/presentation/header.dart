@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
@@ -43,10 +44,12 @@ class _HomeHeaderState extends State<HomeHeader> {
                         padding: const EdgeInsets.only(left: 20.0),
                         child: Text(
                           AppLocalizations.of(context)!.welcomeTo,
-                          style: TextStyle(
-                              color: CommonColors.buttontextColor,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
+                          style: GoogleFonts.cormorant(
+                            textStyle: TextStyle(
+                                color: CommonColors.buttontextColor,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       )
                     ],
