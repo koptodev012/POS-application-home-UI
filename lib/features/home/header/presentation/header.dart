@@ -19,6 +19,7 @@ class HomeHeader extends StatefulWidget {
 }
 
 class _HomeHeaderState extends State<HomeHeader> {
+  //! -------------------------------------------------------
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChangeThemeCubit, ChangeThemeState>(
@@ -66,10 +67,11 @@ class _HomeHeaderState extends State<HomeHeader> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        child: Icon(CupertinoIcons.calendar),
+                        child: const Icon(CupertinoIcons.calendar),
                         onTap: () {
                           setState(() {
-                            CommonVariables.selectIndex = 6;
+                            CommonVariables.selectIndex =
+                                6; // For calendar screen
                           });
 
                           BlocProvider.of<PageIndexCubit>(context)

@@ -71,10 +71,10 @@ class _OrderDetailsHeaderSectionState extends State<OrderDetailsHeaderSection> {
               //! 2nd Row,
 
               Padding(
-                padding: EdgeInsets.only(top: 3.0, left: 8, right: 8),
+                padding: const EdgeInsets.only(top: 3.0, left: 8, right: 8),
                 child: Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       flex: 7,
                       child: Padding(
                         padding: EdgeInsets.all(5.0),
@@ -90,7 +90,7 @@ class _OrderDetailsHeaderSectionState extends State<OrderDetailsHeaderSection> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           GestureDetector(
-                            child: Icon(CupertinoIcons.minus_square_fill),
+                            child: const Icon(CupertinoIcons.minus_square_fill),
                             onTap: () {
                               if (CommonVariables.guestSize > 0) {
                                 setState(() {
@@ -100,14 +100,14 @@ class _OrderDetailsHeaderSectionState extends State<OrderDetailsHeaderSection> {
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.all(5.0),
                             child: Text(
                               CommonVariables.guestSize.toString(),
-                              style: TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ),
                           GestureDetector(
-                            child: Icon(CupertinoIcons.plus_square_fill),
+                            child: const Icon(CupertinoIcons.plus_square_fill),
                             onTap: () {
                               if (CommonVariables.guestSize < 5) {
                                 setState(() {

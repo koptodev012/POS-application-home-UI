@@ -14,7 +14,7 @@ class MenuSection extends StatefulWidget {
 
 class _MenuSectionState extends State<MenuSection> {
   //! --------------------------------------------------------------
-  List<bool> _selected = List<bool>.generate(50, (index) => false);
+  final List<bool> _selected = List<bool>.generate(50, (index) => false);
 
   bool _selectAll = false;
   int? _selectedRowIndex;
@@ -27,6 +27,7 @@ class _MenuSectionState extends State<MenuSection> {
       }
     });
   }
+
   //! --------------------------------------------------------------
 
   @override

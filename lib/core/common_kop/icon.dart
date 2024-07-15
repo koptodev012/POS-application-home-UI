@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomIcon extends StatelessWidget {
@@ -7,11 +6,11 @@ class CustomIcon extends StatelessWidget {
   final String iconPath;
   final double size;
   const CustomIcon({
-    Key? key,
+    super.key,
     this.color,
     required this.iconPath,
     this.size = 20,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

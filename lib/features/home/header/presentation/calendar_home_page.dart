@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:home_design/common/colors.dart';
-import 'package:home_design/common/variables.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class CalendarHomePage extends StatefulWidget {
@@ -42,9 +41,9 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
         DateTime(today.year, today.month, today.day, 9, 0, 0);
     final DateTime endTime = startTime.add(const Duration(hours: 2));
     meetings.add(Meeting(
-        'Conference', startTime, endTime, const Color(0xFF0F8644), false));
+        'Conference', startTime, endTime, const Color(0xFFF44236), false));
     meetings.add(
-        Meeting('Sports', startTime, endTime, const Color(0xFF0F8644), false));
+        Meeting('Sports', startTime, endTime, const Color(0xFF01BCD5), false));
     return meetings;
   }
   //! -----------------------------------------------------------------
@@ -58,13 +57,10 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
         Expanded(
           flex: 2,
           child: SfCalendar(
-            // todayTextStyle: TextStyle(
-            //     color: CommonVariables.isDarkMode == false
-            //         ? Colors.white
-            //         : Colors.blue),
-            // todayHighlightColor: CommonVariables.isDarkMode == false
-            //     ? Colors.blue
-            //     : Colors.white,
+            todayTextStyle: const TextStyle(
+              color: Colors.white,
+            ),
+            todayHighlightColor: const Color(0xff0165FF),
             // selectionDecoration:
             //     BoxDecoration(border: Border.all(color: Colors.blue)),
 
@@ -85,6 +81,10 @@ class _CalendarHomePageState extends State<CalendarHomePage> {
         Expanded(
           flex: 2,
           child: SfCalendar(
+            todayTextStyle: TextStyle(
+              color: Colors.white,
+            ),
+            todayHighlightColor: Color(0xff0165FF),
             controller: _dayCalendarController,
             headerHeight: 0,
             view: CalendarView.day,

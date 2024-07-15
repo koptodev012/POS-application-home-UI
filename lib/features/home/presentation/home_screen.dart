@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
@@ -96,8 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   BlocBuilder<PageIndexCubit, PageIndexState>(
                                 builder: (context, state) {
                                   if (state is PageIndexSuccessState) {
-                                    print(
-                                        "Cubit Page index selected: ${state.pageIndex}");
+                                    log("Cubit Page index selected: ${state.pageIndex}");
                                     return Container(
                                       decoration: BoxDecoration(
                                           color: CommonVariables.selectIndex !=

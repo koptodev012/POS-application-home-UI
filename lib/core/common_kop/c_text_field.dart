@@ -132,7 +132,7 @@ class CustomTextField extends StatelessWidget {
       width: (screenSize.width * 0.22).clamp(minWidth, double.infinity),
       child: TextFormField(
         textInputAction: textInputAction,
-        style: TextStyle(
+        style: const TextStyle(
             fontFamily: CustomLabels.primaryFont,
             color: AppColors.darkColor,
             fontSize: 14),
@@ -142,7 +142,7 @@ class CustomTextField extends StatelessWidget {
           errorStyle: const TextStyle(fontSize: .1),
           fillColor: Colors.white,
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
               fontFamily: CustomLabels.primaryFont,
               color: AppColors.iconColor,
               fontSize: 12),
