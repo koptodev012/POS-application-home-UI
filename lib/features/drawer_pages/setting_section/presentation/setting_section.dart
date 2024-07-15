@@ -2,12 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
 import 'package:home_design/common/localization/cubit/change_language/change_language_cubit.dart';
 import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:home_design/common/variables.dart';
+import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
@@ -116,13 +118,28 @@ class _SettingSectionState extends State<SettingSection> {
                                                                 context)
                                                         .height *
                                                     0.04,
-                                                child: const Row(
+                                                child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
                                                   children: [
-                                                    Icon(
-                                                      Icons
-                                                          .keyboard_arrow_right,
+                                                    GestureDetector(
+                                                      child: const Icon(
+                                                        Icons
+                                                            .keyboard_arrow_right,
+                                                      ),
+                                                      onTap: () {
+                                                        setState(() {
+                                                          CommonVariables
+                                                              .selectIndex = 1;
+
+                                                          BlocProvider.of<
+                                                                      PageIndexCubit>(
+                                                                  context)
+                                                              .selectPageIndexFunction();
+
+                                                          log("Setting Selected Index: ${CommonVariables.selectIndex}");
+                                                        });
+                                                      },
                                                     ),
                                                   ],
                                                 ),
@@ -183,13 +200,27 @@ class _SettingSectionState extends State<SettingSection> {
                                                                 context)
                                                         .height *
                                                     0.04,
-                                                child: const Row(
+                                                child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
                                                   children: [
-                                                    Icon(
-                                                      Icons
-                                                          .keyboard_arrow_right,
+                                                    GestureDetector(
+                                                      child: const Icon(
+                                                        Icons
+                                                            .keyboard_arrow_right,
+                                                      ),
+                                                      onTap: () {
+                                                        setState(() {
+                                                          CommonVariables
+                                                              .selectIndex = 0;
+
+                                                          BlocProvider.of<
+                                                                      PageIndexCubit>(
+                                                                  context)
+                                                              .selectPageIndexFunction();
+                                                          log("Setting Selected Index: ${CommonVariables.selectIndex}");
+                                                        });
+                                                      },
                                                     ),
                                                   ],
                                                 ),

@@ -8,6 +8,7 @@ import 'package:home_design/common/utils/device_dimension.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:home_design/common/variables.dart';
 import 'package:home_design/common/widgets/theme_changed_button.dart';
+import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
 
 class HomeHeader extends StatefulWidget {
@@ -64,10 +65,22 @@ class _HomeHeaderState extends State<HomeHeader> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      GestureDetector(
+                        child: Icon(CupertinoIcons.calendar),
+                        onTap: () {
+                          setState(() {
+                            CommonVariables.selectIndex = 6;
+                          });
+
+                          BlocProvider.of<PageIndexCubit>(context)
+                              .selectPageIndexFunction();
+                        },
+                      ),
+
                       //! Theme Mode,
 
                       const Padding(
-                        padding: EdgeInsets.only(right: 10.0),
+                        padding: EdgeInsets.only(left: 10, right: 10.0),
                         child: ThemeChangedButton(),
                       ),
 

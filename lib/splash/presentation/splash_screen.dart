@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:fade_out_particle/fade_out_particle.dart';
 import 'package:flutter/material.dart';
 import 'package:home_design/common/images/images.dart';
 import 'package:home_design/common/navigation/navigation_helper.dart';
@@ -12,28 +13,13 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with TickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 3),
-    vsync: this,
-  )..repeat();
-  late final Animation<double> _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.fastOutSlowIn,
-  );
-
+class _SplashScreenState extends State<SplashScreen> {
+  bool _disappear = true;
   @override
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3),
         () => NavigationHelper.navigateAndReplace(context, const HomeScreen()));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -71,10 +57,10 @@ class _SplashScreenState extends State<SplashScreen>
                   SizedBox(
                     height: screenHeight * 0.01,
                   ),
-                  SizeTransition(
-                    sizeFactor: _animation,
-                    axis: Axis.horizontal,
-                    axisAlignment: -1,
+                  FadeOutParticle(
+                    onAnimationEnd: () => setState(() => _disappear = false),
+                    disappear: _disappear,
+                    duration: const Duration(milliseconds: 4000),
                     child: const Text(
                       "Efficiency Elevated: Quick Dine – Where Service Meets Speed!",
                       style: TextStyle(

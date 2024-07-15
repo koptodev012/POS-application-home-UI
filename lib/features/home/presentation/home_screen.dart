@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home_design/common/colors.dart';
-
 import 'package:home_design/common/variables.dart';
 import 'package:home_design/features/drawer_pages/home_section/presentation/home_section.dart';
 import 'package:home_design/features/drawer_pages/menu_section/presentation/menu_section.dart';
@@ -13,6 +12,7 @@ import 'package:home_design/features/home/drawer/cubit/isCollpasedValue/is_collp
 import 'package:home_design/features/home/drawer/cubit/select_page_index/page_index_cubit.dart';
 import 'package:home_design/features/home/drawer/presentation/home_drawer.dart';
 import 'package:home_design/features/home/header/cubit/change_theme/change_theme_cubit.dart';
+import 'package:home_design/features/home/header/presentation/calendar_home_page.dart';
 import 'package:home_design/features/home/header/presentation/header.dart';
 import 'package:home_design/features/home/order_screen/presentation/order_details.dart';
 
@@ -31,7 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
     const OrderSection(),
     const PaymentSection(),
     const StaffSection(),
-    const SettingSection()
+    const SettingSection(),
+    const CalendarHomePage()
   ];
   //! -------------------------------------------------------
 

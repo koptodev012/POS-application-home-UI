@@ -70,7 +70,7 @@ class _OrderDetailsHeaderSectionState extends State<OrderDetailsHeaderSection> {
 
               //! 2nd Row,
 
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 3.0, left: 8, right: 8),
                 child: Row(
                   children: [
@@ -89,15 +89,33 @@ class _OrderDetailsHeaderSectionState extends State<OrderDetailsHeaderSection> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Icon(CupertinoIcons.minus_square_fill),
+                          GestureDetector(
+                            child: Icon(CupertinoIcons.minus_square_fill),
+                            onTap: () {
+                              if (CommonVariables.guestSize > 0) {
+                                setState(() {
+                                  CommonVariables.guestSize--;
+                                });
+                              }
+                            },
+                          ),
                           Padding(
                             padding: EdgeInsets.all(5.0),
                             child: Text(
-                              "0",
+                              CommonVariables.guestSize.toString(),
                               style: TextStyle(fontSize: 16),
                             ),
                           ),
-                          Icon(CupertinoIcons.plus_square_fill),
+                          GestureDetector(
+                            child: Icon(CupertinoIcons.plus_square_fill),
+                            onTap: () {
+                              if (CommonVariables.guestSize < 5) {
+                                setState(() {
+                                  CommonVariables.guestSize++;
+                                });
+                              }
+                            },
+                          ),
                         ],
                       ),
                     ),
